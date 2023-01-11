@@ -1,4 +1,4 @@
-import styles from "../styles/home.module.scss";
+
 import Heade from "next/head";
 
 export default function Home() {
@@ -7,7 +7,7 @@ export default function Home() {
       <Heade>
         <title>ig.news</title>
       </Heade>
-      <h1 className={styles.title}>Hello</h1>
+      <h1>Hello World</h1>
     </>
   );
 }

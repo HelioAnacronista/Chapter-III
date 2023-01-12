@@ -3,7 +3,7 @@
    margin: 0 auto;
    padding: 0 2rem;
    //faz que o elemneto seja altura total da home + -5 rem de altura(top e bottom)
-   height: calc(100vh - 5rem );
+   height: calc(100vh - 5rem);
 
    display: flex;
    align-items: center;
@@ -14,7 +14,7 @@
    max-width: 600px;
 
    //pega o span do primerio nivel 
-   > span {
+   >span {
       font-size: 1.5rem;
       font-weight: bold;
    }
@@ -24,7 +24,7 @@
       line-height: 4.5rem;
       font-weight: 900;
       margin-top: 2.5rem;
-      
+
       span {
          color: var(--cyan-500)
       }
@@ -39,5 +39,9 @@
          color: var(--cyan-500);
          font-weight: bold;
       }
+   }
+
+   button {
+      margin-top: 2.5rem;
    }
 }

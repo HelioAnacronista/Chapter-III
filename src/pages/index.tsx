@@ -6,6 +6,13 @@ import Heade from "next/head";
 import { SubscribeButton } from "../components/SubscribeButton";
 import { stripe } from "../services/stripe";
 
+//tipos de chamadas no next
+/*
+Client-side comentaios de post (pode carregar, não ou depois)
+Server-side dados dinamicos
+Static site generation compatilha para todos
+*/
+
 interface HomeProps {
   product: {
     priceId: string;
@@ -39,6 +46,8 @@ export default function Home({ product }: HomeProps) {
   );
 }
 
+//requisiçao lado servido 
+//(GetStaticProps - SSG) salva html statico usado para paginas staticas que todos vao ve
 export const getStaticProps: GetStaticProps = async () => {
   const price = await stripe.prices.retrieve('price_1MPQQSFq3MJVu9cb828ccQIl')
 
@@ -53,6 +62,6 @@ export const getStaticProps: GetStaticProps = async () => {
     props: {
       product,
     },
-    revalidate: 60 * 60 * 24, //24 hours
+    revalidate: 60 * 60 * 24, //revalida o conteudo 24 hours
   }
 }

@@ -15,13 +15,13 @@ export default NextAuth({
   ],
   /*usado em produção (jwt nossa aplicação)
   jwt: {
+    //chave precisa ser em node-jose-tools
     signingKey: process.env.SIGNING_KEY,
   }*/
   callbacks: {
     //salvar os dados do callbacks no banco de dados
     async session({ session }) {
       try {
-        //escrita da query para insert no banco de dados
         const userActiveSbuscriptions = await fauna.query(
           q.Get(
             q.Intersection([
@@ -58,15 +58,16 @@ export default NextAuth({
 
       try {
         await fauna.query(
+          //Verificar ser não existe user, ele vai criar um novo doc.
           q.If(
             q.Not(
               q.Exists(
                 q.Match(q.Index("user_by_email"), q.Casefold(user.email))
               )
             ),
-            //create (FQL)
-            q.Create(q.Collection("users"), { data: { email } }),
-            q.Get(q.Match(q.Index("user_by_email"), q.Casefold(user.email)))
+            //essa parte é um condição do if
+            q.Create(q.Collection("users"), { data: { email } }), //se não existe cria
+            q.Get(q.Match(q.Index("user_by_email"), q.Casefold(user.email))) // busca se existe
           )
         );
 

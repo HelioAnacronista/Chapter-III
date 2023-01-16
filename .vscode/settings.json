@@ -9,7 +9,7 @@
   "workbench.iconTheme": "material-icon-theme", // <== Tema dos icones
   "workbench.colorTheme": "One Dark Pro",
   "glassit.alpha": 241,
-  "workbench.productIconTheme": "fluent-icons",
+  "workbench.productIconTheme": "Default",
   "workbench.tree.indent": 20,
   // =================== CONFIG: javascript/node.js ===================
   "javascript.suggest.autoImports": true,

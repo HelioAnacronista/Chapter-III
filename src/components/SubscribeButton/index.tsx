@@ -1,10 +1,8 @@
 import { signIn, useSession } from "next-auth/react";
 import { useRouter } from "next/router";
+import { api } from "../../services/api";
+import { getStripeJs } from "../../services/stripe-js";
 import styles from "./styles.module.scss";
-
-interface SubscribeButtonProps {
-  priceId: string;
-}
 
 /* Locais seguros para operaçoes que precisam de seguraça
 
@@ -13,7 +11,7 @@ getStaticProps (SSG)
 API ROUTES
 */
 
-export function SubscribeButton({ priceId }: SubscribeButtonProps) {
+export const SubscribeButton = () => {
   const { data: session } = useSession();
   const router = useRouter();
 
@@ -23,34 +21,27 @@ export function SubscribeButton({ priceId }: SubscribeButtonProps) {
       return;
     }
 
-    /* 
-    if (session.activeSubscription) {
-      router.push('/posts');
-      return;
-    }
-
+    //chamad api stripe
     try {
-      const response = await api.post('/subscribe')
+      const response = await api.post("/subscribe");
 
       const { sessionId } = response.data;
 
-      const stripe = await getStripeJs()
+      const stripe = await getStripeJs();
 
-      await stripe.redirectToCheckout({ sessionId })
-
+      await stripe.redirectToCheckout({ sessionId });
     } catch (err) {
-      alert(err.message)
+      alert(err.message);
     }
-  }
-*/
-    return (
-      <button
-        onClick={() => handleSubscribe}
-        type="button"
-        className={styles.subscribeButton}
-      >
-        Subscribe now
-      </button>
-    );
   };
-}
+
+  return (
+    <button
+      className={styles.subscribeButton}
+      type="button"
+      onClick={handleSubscribe}
+    >
+      Subscribe now
+    </button>
+  );
+};

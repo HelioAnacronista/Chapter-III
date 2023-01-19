@@ -223,5 +223,8 @@
   // =================== CONFIG: tabnine ===================
   "tabnine.experimentalAutoImports": true,
   // =================== CONFIG: segurança ===================
-  "security.workspace.trust.untrustedFiles": "newWindow" // <== Abrir arquivos não confiáveis em uma nova janela
+  "security.workspace.trust.untrustedFiles": "newWindow",
+  "[env]": {
+    "editor.defaultFormatter": "IronGeek.vscode-env"
+  } // <== Abrir arquivos não confiáveis em uma nova janela
 }

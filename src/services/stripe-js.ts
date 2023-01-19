@@ -1,4 +1,3 @@
-// para camada de front-end
 import { loadStripe } from "@stripe/stripe-js";
 
 export const getStripeJs = async () => {

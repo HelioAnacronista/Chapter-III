@@ -1,19 +1,16 @@
-import Document, { Html, Head, Main, NextScript } from "next/document";
 
-//Carrega so uma vez
-export default class MyDocuments extends Document {
+import Document, { Head, Html, Main, NextScript } from "next/document";
+
+export default class MyDocumento extends Document {
   render() {
-    //meu jsx
     return (
       <Html>
         <Head>
           <link rel="preconnect" href="https://fonts.googleapis.com" />
-          <link
-            href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700;900&display=swap"
-            rel="stylesheet"
-          />
+          <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap" rel="stylesheet" />
 
-          <link rel="shortcut icon" href="/favicon.png" type="image/png" />
+          <link rel="shortcut icon" href="/favicon.icon.png" type="image/png" />
+
         </Head>
         <body>
           <Main />

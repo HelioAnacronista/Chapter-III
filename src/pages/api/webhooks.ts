@@ -47,14 +47,14 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     const { type } = event;
 
     if (relevantEvent.has(type)) {
-      console.log("Evento on");
+      console.log("Eventoooo", event)
 
       try {
         switch (type) {
           case "customer.subscription.updated":
           case "customer.subscription.deleted":
             const subscription = event.data.object as Stripe.Subscription;
-            //ouvindo outros eventos (atualizar os dados de subscription se não existi)
+
             await saveSubscription(
               subscription.id,
               subscription.customer.toString(),
@@ -65,7 +65,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
           case "checkout.session.completed":
             const checkoutSession = event.data
               .object as Stripe.Checkout.Session;
-            //salvar o dados da inscriçao
+
             await saveSubscription(
               checkoutSession.subscription.toString(),
               checkoutSession.customer.toString(),
@@ -79,6 +79,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
       } catch (err) {
         return res.json({ error: "Webhook handler failed." });
       }
+
     }
 
     res.json({ received: true });
